@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  .button-bar {
+    flex: 0 0 auto;
+    padding: 1rem;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+}

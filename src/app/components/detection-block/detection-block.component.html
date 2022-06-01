@@ -1,0 +1,8 @@
+<div class="button-bar">
+  <span>{{id}}</span>
+  <button mat-raised-button (click)="triggerChanges()">DetectChanges</button>
+  <button mat-raised-button (click)="markCheck()">MarkForCheck</button>
+</div>
+<div class="content" *ngIf="counter > 0">
+  <app-detection-block [counter]="counter - 1"></app-detection-block>
+</div>
