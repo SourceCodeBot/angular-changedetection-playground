@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck } from '@angular/core';
 import { LogService } from './log.service';
 
 @Component({
@@ -7,13 +7,17 @@ import { LogService } from './log.service';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements DoCheck {
+export class AppComponent implements DoCheck, AfterViewInit {
   public title = 'Angular Change-Detection Playground';
 
   constructor(private cdr: ChangeDetectorRef, private logger: LogService) {}
 
   public ngDoCheck(): void {
-      this.logger.log('check', 'app');
+    this.logger.log('check', 'app');
+  }
+
+  public ngAfterViewInit(): void {
+    this.cdr.detach();
   }
 
   public triggerChanges(): void {

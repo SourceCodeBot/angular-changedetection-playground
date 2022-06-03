@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, Input, AfterContentInit, AfterViewInit } from '@angular/core';
 import { LogService } from 'src/app/log.service';
 
 let id = 1;
@@ -9,7 +9,7 @@ let id = 1;
   styleUrls: ['./detection-block.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DetectionBlockComponent implements DoCheck {
+export class DetectionBlockComponent implements DoCheck, AfterViewInit {
 
   @Input()
   public counter = 0;
@@ -30,6 +30,10 @@ export class DetectionBlockComponent implements DoCheck {
   public markCheck(): void {
     this.logger.log('markForCheck', this.id, `click ${this.id}`);
     this.cdr.markForCheck();
+  }
+
+  public ngAfterViewInit(): void {
+    this.cdr.detach();
   }
 
 }
